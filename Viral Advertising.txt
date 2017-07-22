@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+class Solution {
+    static void Main(String[] args) {
+       int n = Convert.ToInt32(Console.ReadLine());
+        int liked = 0;
+        int previous = 0;
+        if (n >= 1)
+            for (int i = 1; i <= n; i++)
+            {
+                if (i == 1)
+                {
+                    liked += 2;
+                    previous = 2;
+                }
+                else
+                {
+                    previous = (previous * 3) / 2;
+                    liked += previous;
+                }
+            }
+
+        Console.WriteLine(liked);
+        
+    }
+}

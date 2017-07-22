@@ -1,0 +1,98 @@
+
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+class Solution
+{
+
+    static void Main(String[] args)
+    {
+        int n = Convert.ToInt32(Console.ReadLine());
+        string[] a_temp = Console.ReadLine().Split(' ');
+        int[] num = Array.ConvertAll(a_temp, int.Parse);
+        Array.Sort(num);
+
+        int[] required = new int[100];
+        int lengths = 0;
+
+
+        for (int i = 0; i < n; i++)
+        {
+            required[num[i]]++;
+        }
+
+        for (int i = 1; i < n - 1; i++)
+        {
+            if (required[i] + required[i + 1] > lengths) lengths = required[i] + required[i + 1];
+        }
+
+        Console.WriteLine(lengths);
+
+
+
+    }
+}
+
+/*
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CSharp
+{
+    class Program
+    {
+        static void Main(String[] args)
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            string[] a_temp = Console.ReadLine().Split(' ');
+            int[] num = Array.ConvertAll(a_temp, Int32.Parse);
+            Array.Sort(num);
+            List<int> required = new List<int>();
+            List<int> lengths = new List<int>();
+            required.Add(num[0]);
+            for (int i = 0; i < n; i++)
+            {
+                bool difference = false;
+                difference = i == 0 ? Math.Abs(num[i] - required[0]) <= 1 : Math.Abs(num[i - 1] - num[i]) <= 1;
+                if (difference)
+                {
+                    bool isPerfect = true;
+                    foreach (var a in required)
+                    {
+                        difference = i == 0 ? Math.Abs(a - required[0]) > 1 : Math.Abs(a - num[i]) > 1;
+                        if (difference)
+                        {
+                            isPerfect = false;
+                            break;
+                        }
+                    }
+                    if (isPerfect && i == 0)
+                        required.Add(num[i]);
+                    else if (isPerfect && i > 0)
+                    {
+
+                        required.Add(num[i - 1]);
+
+                        if(i == n) required.Add(num[i - 1]);
+                    }
+                    else
+                    {
+                        lengths.Add(required.Count);
+                        required.Clear();
+                    }
+                }
+                if(i == 0) required.Remove(required[0]);
+            }
+            Console.WriteLine(lengths.Max());
+
+
+        }
+    }
+}
+
+*/

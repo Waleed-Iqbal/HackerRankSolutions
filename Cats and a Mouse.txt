@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CSharp
+{
+    class Program
+    {
+        private static int totalUSB;
+
+        static void Main(String[] args)
+        {
+            int totalQueries = int.Parse(Console.ReadLine());
+            for (int i = 0; i < totalQueries; i++)
+            {
+                int[] positions = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+                int catAPosition = positions[0];
+                int catBPosition = positions[1];
+                int mousePosition = positions[2];
+                string result = "Mouse C";
+                if (Math.Abs(catAPosition - mousePosition) > Math.Abs(catBPosition - mousePosition))
+                    result = "Cat B";
+                if (Math.Abs(catAPosition - mousePosition) < Math.Abs(catBPosition - mousePosition))
+                    result = "Cat A";
+                Console.WriteLine(result);
+                
+            }
+
+        }
+    }
+}

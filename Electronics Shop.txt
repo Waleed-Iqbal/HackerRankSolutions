@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CSharp
+{
+    class Program
+    {
+        private static int totalUSB;
+
+        static void Main(String[] args)
+        {
+            string[] inputs = Console.ReadLine().Split(' ');
+            int totalMoney = int.Parse(inputs[0]);
+            int totalKeyboards = int.Parse(inputs[1]);
+            int totalUSBs = int.Parse(inputs[2]);
+            int[] keyBoardPrices = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+            int[] usbPrices = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+            int result = -1;
+
+            for (int i = 0; i < totalKeyboards; i++)
+            {
+                for (int j = 0; j < totalUSBs; j++)
+                {
+                    int spent = keyBoardPrices[i] + usbPrices[j];
+                    if (result < spent && spent <= totalMoney)
+                        result = spent;
+                }
+            }
+            Console.WriteLine(result);
+        }
+    }
+}
